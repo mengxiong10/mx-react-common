@@ -1,0 +1,11 @@
+.with-state-container {
+  position: relative;
+  display: flex;
+  min-height: 60px;
+  .ant-spin-nested-loading {
+    width: 100%;
+  }
+  .ant-spin-container {
+    height: 100%;
+  }
+}

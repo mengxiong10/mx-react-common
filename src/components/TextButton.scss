@@ -1,0 +1,24 @@
+.btn-text {
+  display: inline-block;
+  border: none;
+  color: #1890ff;
+  outline: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.3s;
+  &:hover {
+    color: #40a9ff;
+  }
+  &:active {
+    color: #096dd9;
+  }
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:active {
+    color: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+}
