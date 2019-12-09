@@ -24,8 +24,6 @@ export { default as useMount } from './src/hooks/useMount';
 
 export { default as useBoolean } from './src/hooks/useBoolean';
 
-export { default as usePromise } from './src/hooks/usePromise';
-
 export { default as useForceUpdate } from './src/hooks/useForceUpdate';
 
 export { default as useFormInput } from './src/hooks/useFormInput';
