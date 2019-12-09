@@ -1,6 +1,6 @@
 {
   "name": "mx-react-common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react project base",
   "main": "./index.ts",
   "module": "./index.ts",
