@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useMemo } from 'react';
+import React, { useReducer, useContext, Dispatch, useCallback } from 'react';
 
 export interface ModalManagerProps {
   children: React.ReactNode;
@@ -39,36 +39,18 @@ function reducer(state: ModalState[], action: ModalAction) {
 
 const initialState: ModalState[] = [];
 
-const ModalContext = React.createContext<{
-  hide(): void;
-  show<T>(modalType: string, modalProps?: T | undefined): void;
-  dispatch: React.Dispatch<ModalAction>;
-}>({} as any);
+export function showModal<T extends object = any>(modalType: string) {
+  return (modalProps: T) => ({
+    type: 'SHOW_MODAL' as 'SHOW_MODAL',
+    modalType,
+    modalProps
+  });
+}
 
-export const useModal = () => {
-  return useContext(ModalContext);
-};
+export const ModalContext = React.createContext<Dispatch<ModalAction>>(() => {});
 
 function ModalManager({ children, modalComponentMap }: ModalManagerProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const modal = useMemo(() => {
-    return {
-      hide() {
-        dispatch({
-          type: 'HIDE_MODAL' as 'HIDE_MODAL'
-        });
-      },
-      show<T>(modalType: string, modalProps?: T) {
-        dispatch({
-          type: 'SHOW_MODAL' as 'SHOW_MODAL',
-          modalType,
-          modalProps
-        });
-      },
-      dispatch
-    };
-  }, []);
 
   const renderModal = (modalDescription: ModalState) => {
     const { modalType, modalProps = {} } = modalDescription;
@@ -82,11 +64,24 @@ function ModalManager({ children, modalComponentMap }: ModalManagerProps) {
   };
 
   return (
-    <ModalContext.Provider value={modal}>
+    <ModalContext.Provider value={dispatch}>
       {children}
       {state.map(renderModal)}
     </ModalContext.Provider>
   );
 }
+
+export const useModal = () => {
+  return useContext(ModalContext);
+};
+
+export const useModalClose = () => {
+  const diapatchModal = useModal();
+  return useCallback(() => {
+    diapatchModal({
+      type: 'HIDE_MODAL' as 'HIDE_MODAL'
+    });
+  }, [diapatchModal]);
+};
 
 export default ModalManager;
