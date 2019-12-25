@@ -30,8 +30,6 @@ export { default as useFormInput } from './src/hooks/useFormInput';
 
 export { default as usePrevious } from './src/hooks/usePrevious';
 
-export { default as useWatch } from './src/hooks/useWatch';
-
 export { default as useAsyncFn } from './src/hooks/useAsyncFn';
 
 export { default as useRefUnmounted } from './src/hooks/useRefUnmounted';
