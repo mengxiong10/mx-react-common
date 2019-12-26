@@ -43,7 +43,7 @@ const useAsyncFn = <R, S extends any[]>(
         });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [deps]
+    deps
   );
 
   return [state, callback];
