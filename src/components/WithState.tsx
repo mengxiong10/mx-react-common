@@ -36,7 +36,7 @@ function WithState(props: WithStateProps, ref: React.RefObject<HTMLDivElement>) 
 
   return (
     <div className={classes} ref={ref} {...restProps}>
-      <ErrorBoundary error={error}>
+      <ErrorBoundary error={error} style={{ width: '100%' }}>
         <Spin spinning={loading} delay={200} tip="玩命加载中...">
           {placeholder || children}
         </Spin>
