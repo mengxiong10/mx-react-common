@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Spin } from 'antd';
 import classNames from 'classnames';
-
+import { SpinProps } from 'antd/lib/spin';
 import EmptyBlock, { EmptyBlockProps } from './EmptyBlock';
 import ErrorBoundary from './ErrorBoundary';
 import './WithState.scss';
@@ -13,6 +13,7 @@ export interface WithStateProps extends React.HTMLAttributes<HTMLElement> {
   isEmpty?: (value: any) => boolean;
   empty?: EmptyBlockProps;
   value?: any;
+  spin?: SpinProps;
 }
 
 const isDefaultEmpty = (value: any) => {
@@ -28,6 +29,7 @@ function WithState(props: WithStateProps, ref: React.RefObject<HTMLDivElement>) 
     empty,
     value,
     className,
+    spin,
     ...restProps
   } = props;
 
@@ -37,7 +39,7 @@ function WithState(props: WithStateProps, ref: React.RefObject<HTMLDivElement>) 
   return (
     <div className={classes} ref={ref} {...restProps}>
       <ErrorBoundary error={error} style={{ width: '100%' }}>
-        <Spin spinning={loading} delay={200} tip="玩命加载中...">
+        <Spin delay={200} tip="玩命加载中..." {...spin} spinning={loading}>
           {placeholder || children}
         </Spin>
       </ErrorBoundary>
