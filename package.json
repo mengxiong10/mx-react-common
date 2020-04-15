@@ -1,6 +1,6 @@
 {
   "name": "mx-react-common",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "react project base",
   "main": "./index.ts",
   "module": "./index.ts",
@@ -33,7 +33,7 @@
       "git add"
     ]
   },
-  "dependencies": {
+  "peerDependencies": {
     "antd": "*",
     "classnames": "*",
     "lodash": "*",
